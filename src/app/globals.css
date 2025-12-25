@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 253 252 250;
+    --foreground: 26 26 26;
+    --muted: 240 237 232;
+    --muted-foreground: 109 109 109;
+    --border: 224 219 210;
+    --ring: 143 131 112;
+  }
+
+  html {
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-parchment-50 text-ink-950;
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    @apply bg-gothic-200 text-gothic-950;
+  }
+}
+
+@layer components {
+  .card-shadow {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 4px 12px rgba(0, 0, 0, 0.04),
+      0 8px 24px rgba(0, 0, 0, 0.02);
+  }
+
+  .card-shadow-hover {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.06),
+      0 8px 20px rgba(0, 0, 0, 0.06),
+      0 16px 40px rgba(0, 0, 0, 0.04);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .prose-norse {
+    @apply text-ink-800 leading-relaxed;
+  }
+
+  .prose-norse h1,
+  .prose-norse h2,
+  .prose-norse h3 {
+    @apply font-serif text-ink-950 tracking-tight;
+  }
+
+  .prose-norse p {
+    @apply mb-4 last:mb-0;
+  }
+
+  .prose-norse blockquote {
+    @apply border-l-2 border-gothic-300 pl-4 italic text-ink-600;
+  }
+
+  .prose-norse strong {
+    @apply font-semibold text-ink-950;
+  }
+
+  .realm-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .realm-badge-gothic {
+    @apply bg-gothic-100 text-gothic-800;
+  }
+
+  .realm-badge-voluspa {
+    @apply bg-ink-100 text-ink-800;
+  }
+
+  .realm-badge-havamal {
+    @apply bg-parchment-200 text-parchment-900;
+  }
+}
+
+@layer utilities {
+  @keyframes cardFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .animate-fade-in {
+    animation: cardFadeIn 0.4s ease-out both;
+  }
+
+  .animate-in {
+    animation: fadeUp 0.5s ease-out forwards;
+  }
+
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
+
+  /* Card grid layout - simple responsive grid */
+  .masonry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .masonry {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .masonry {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .masonry {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .masonry-item {
+    /* Grid items don't need special handling */
+  }
+}
