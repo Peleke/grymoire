@@ -10,12 +10,15 @@ interface CardPreviewProps {
 export function CardPreview({ card }: CardPreviewProps) {
   const realmInfo = REALM_INFO[card.realm]
 
-  // Use card.order for deterministic aspect ratio (stable between server/client)
-  // Using paddingBottom trick for guaranteed cross-browser CSS column support
+  // Use sum of char codes for simple deterministic variety
+  // Simpler than hash to avoid server/client differences
+  const charSum = card.id.split('').reduce((sum, c) => sum + c.charCodeAt(0), 0)
   const aspectRatio =
-    card.order % 3 === 1 ? '125%' :  // 4:5
-    card.order % 3 === 2 ? '100%' :  // 1:1
-    '75%'                             // 4:3
+    charSum % 5 === 0 ? '130%' :  // tall
+    charSum % 5 === 1 ? '115%' :  // medium-tall
+    charSum % 5 === 2 ? '100%' :  // square
+    charSum % 5 === 3 ? '85%' :   // medium-wide
+    '70%'                          // wide
 
   return (
     <div className="masonry-item">
