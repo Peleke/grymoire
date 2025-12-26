@@ -80,13 +80,13 @@
   }
 
   .prose-norse {
-    @apply text-ink-800 leading-relaxed;
+    @apply text-ink-800 dark:text-parchment-300 leading-relaxed;
   }
 
   .prose-norse h1,
   .prose-norse h2,
   .prose-norse h3 {
-    @apply font-serif text-ink-950 tracking-tight;
+    @apply font-serif text-ink-950 dark:text-parchment-100 tracking-tight;
   }
 
   .prose-norse p {
@@ -94,11 +94,11 @@
   }
 
   .prose-norse blockquote {
-    @apply border-l-2 border-gothic-300 pl-4 italic text-ink-600;
+    @apply border-l-2 border-gothic-300 dark:border-gothic-600 pl-4 italic text-ink-600 dark:text-parchment-400;
   }
 
   .prose-norse strong {
-    @apply font-semibold text-ink-950;
+    @apply font-semibold text-ink-950 dark:text-parchment-100;
   }
 
   .realm-badge {

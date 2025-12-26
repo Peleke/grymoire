@@ -103,8 +103,8 @@ export default async function CardPage({ params, searchParams }: PageProps) {
       <CardDetail card={card} realmInfo={realmInfo} />
 
       {/* Share Bar */}
-      <div className="mt-12 border-t border-gothic-100 pt-8">
-        <h3 className="mb-4 text-sm font-medium text-ink-600 uppercase tracking-wider">
+      <div className="mt-12 border-t border-gothic-100 dark:border-ink-800 pt-8">
+        <h3 className="mb-4 text-sm font-medium text-ink-600 dark:text-parchment-400 uppercase tracking-wider">
           Share this card
         </h3>
         <ShareButtons
@@ -115,14 +115,14 @@ export default async function CardPage({ params, searchParams }: PageProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="mt-12 grid grid-cols-2 gap-4 border-t border-gothic-100 pt-8">
+      <nav className="mt-12 grid grid-cols-2 gap-4 border-t border-gothic-100 dark:border-ink-800 pt-8">
         {prevCard ? (
           <a
             href={`/${prevCard.realm}/${prevCard.id}`}
-            className="group rounded-xl border border-gothic-100 p-4 transition-all hover:border-gothic-200 hover:bg-gothic-50"
+            className="group rounded-xl border border-gothic-100 dark:border-ink-700 p-4 transition-all hover:border-gothic-200 hover:bg-gothic-50 dark:hover:border-ink-600 dark:hover:bg-ink-800"
           >
-            <span className="text-xs text-ink-400">Previous</span>
-            <p className="mt-1 font-serif text-lg text-ink-900 group-hover:text-ink-950">
+            <span className="text-xs text-ink-400 dark:text-parchment-500">Previous</span>
+            <p className="mt-1 font-serif text-lg text-ink-900 dark:text-parchment-200 group-hover:text-ink-950 dark:group-hover:text-parchment-100">
               {prevCard.title}
             </p>
           </a>
@@ -132,10 +132,10 @@ export default async function CardPage({ params, searchParams }: PageProps) {
         {nextCard ? (
           <a
             href={`/${nextCard.realm}/${nextCard.id}`}
-            className="group rounded-xl border border-gothic-100 p-4 text-right transition-all hover:border-gothic-200 hover:bg-gothic-50"
+            className="group rounded-xl border border-gothic-100 dark:border-ink-700 p-4 text-right transition-all hover:border-gothic-200 hover:bg-gothic-50 dark:hover:border-ink-600 dark:hover:bg-ink-800"
           >
-            <span className="text-xs text-ink-400">Next</span>
-            <p className="mt-1 font-serif text-lg text-ink-900 group-hover:text-ink-950">
+            <span className="text-xs text-ink-400 dark:text-parchment-500">Next</span>
+            <p className="mt-1 font-serif text-lg text-ink-900 dark:text-parchment-200 group-hover:text-ink-950 dark:group-hover:text-parchment-100">
               {nextCard.title}
             </p>
           </a>
