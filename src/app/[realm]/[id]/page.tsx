@@ -10,6 +10,7 @@ interface PageProps {
     realm: string
     id: string
   }>
+  searchParams: Promise<{ from?: string }>
 }
 
 export async function generateStaticParams() {
@@ -57,8 +58,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function CardPage({ params }: PageProps) {
+export default async function CardPage({ params, searchParams }: PageProps) {
   const { realm, id } = await params
+  const { from } = await searchParams
   const card = await getCard(realm as Realm, id)
 
   if (!card) {
@@ -75,14 +77,17 @@ export default async function CardPage({ params }: PageProps) {
 
   const cardUrl = `https://yourdailynorse.com/${card.realm}/${card.id}`
 
+  // Build back link that preserves realm filter
+  const homeHref = from ? `/?realm=${from}` : '/'
+
   return (
     <article className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <nav className="mb-8">
         <ol className="flex items-center gap-2 text-sm text-ink-500">
           <li>
-            <a href="/" className="hover:text-ink-700 transition-colors">
-              Home
+            <a href={homeHref} className="hover:text-ink-700 transition-colors">
+              ← Back
             </a>
           </li>
           <li>/</li>

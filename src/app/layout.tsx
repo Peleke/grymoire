@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Cormorant_Garamond, JetBrains_Mono } from 'next/font/google'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import './globals.css'
 
 const sans = Inter({
@@ -47,36 +48,37 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`} suppressHydrationWarning>
       <body className="min-h-screen antialiased">
         <div className="relative flex min-h-screen flex-col">
-          <header className="sticky top-0 z-50 w-full border-b border-gothic-100 bg-parchment-50/80 backdrop-blur-lg">
+          <header className="sticky top-0 z-50 w-full border-b border-gothic-100 bg-parchment-50/80 backdrop-blur-lg dark:border-ink-800 dark:bg-ink-950/80">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               <a href="/" className="flex items-center gap-3 transition-opacity hover:opacity-70">
-                <span className="font-serif text-2xl font-semibold tracking-tight text-ink-950">
+                <span className="font-serif text-2xl font-semibold tracking-tight text-ink-950 dark:text-parchment-100">
                   Your Daily Norse
                 </span>
               </a>
               <nav className="flex items-center gap-6">
                 <a
                   href="/"
-                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-950"
+                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-950 dark:text-parchment-400 dark:hover:text-parchment-100"
                 >
                   Browse
                 </a>
                 <a
                   href="/about"
-                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-950"
+                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-950 dark:text-parchment-400 dark:hover:text-parchment-100"
                 >
                   About
                 </a>
+                <ThemeToggle />
               </nav>
             </div>
           </header>
           <main className="flex-1">{children}</main>
-          <footer className="border-t border-gothic-100 py-8">
+          <footer className="border-t border-gothic-100 py-8 dark:border-ink-800">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <p className="text-center text-sm text-ink-500">
+              <p className="text-center text-sm text-ink-500 dark:text-parchment-500">
                 Ancient lines. Daily signal.
               </p>
             </div>

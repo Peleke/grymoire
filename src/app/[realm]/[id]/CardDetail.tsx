@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { CardWithContent, REALM_INFO } from '@/lib/types'
+import { MDXContent } from '@/components/MDXContent'
 
 interface CardDetailProps {
   card: CardWithContent
@@ -26,8 +27,8 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-serif text-[12rem] text-gothic-300/40 select-none">
-              {card.primaryText.charAt(0)}
+            <span className="font-serif text-[12rem] text-ink-950 select-none">
+              {Array.from(card.primaryText)[0]}
             </span>
           </div>
         )}
@@ -101,12 +102,9 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="prose-norse mt-10 text-lg"
+        className="mt-10 text-lg"
       >
-        {/* For now, render as plain text. Will add MDX rendering later */}
-        {card.content.split('\n\n').map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
+        <MDXContent source={card.mdxSource} />
       </motion.div>
 
       {/* Tags */}
