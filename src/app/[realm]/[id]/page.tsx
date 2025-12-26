@@ -115,16 +115,20 @@ export default async function CardPage({ params, searchParams }: PageProps) {
       </div>
 
       {/* Navigation */}
-      <nav className="mt-12 grid grid-cols-2 gap-4 border-t border-gothic-100 dark:border-ink-800 pt-8">
+      <nav className="mt-12 grid grid-cols-2 gap-4 pt-8">
         {prevCard ? (
           <a
             href={`/${prevCard.realm}/${prevCard.id}`}
-            className="group rounded-xl border border-gothic-100 dark:border-ink-700 p-4 transition-all hover:border-gothic-200 hover:bg-gothic-50 dark:hover:border-ink-600 dark:hover:bg-ink-800"
+            className="group block overflow-hidden rounded-xl bg-gothic-50 dark:bg-ink-800 transition-all hover:bg-gothic-100 dark:hover:bg-ink-700"
           >
-            <span className="text-xs text-ink-400 dark:text-parchment-500">Previous</span>
-            <p className="mt-1 font-serif text-lg text-ink-900 dark:text-parchment-200 group-hover:text-ink-950 dark:group-hover:text-parchment-100">
-              {prevCard.title}
-            </p>
+            {/* Accent ribbon */}
+            <div className="h-1 bg-gradient-to-r from-gothic-300 to-gothic-400 dark:from-gothic-600 dark:to-gothic-500" />
+            <div className="p-4">
+              <span className="text-xs font-medium uppercase tracking-wider text-gothic-500 dark:text-gothic-400">← Previous</span>
+              <p className="mt-2 font-serif text-lg text-ink-900 dark:text-parchment-100 group-hover:text-ink-950">
+                {prevCard.title}
+              </p>
+            </div>
           </a>
         ) : (
           <div />
@@ -132,12 +136,16 @@ export default async function CardPage({ params, searchParams }: PageProps) {
         {nextCard ? (
           <a
             href={`/${nextCard.realm}/${nextCard.id}`}
-            className="group rounded-xl border border-gothic-100 dark:border-ink-700 p-4 text-right transition-all hover:border-gothic-200 hover:bg-gothic-50 dark:hover:border-ink-600 dark:hover:bg-ink-800"
+            className="group block overflow-hidden rounded-xl bg-gothic-50 dark:bg-ink-800 text-right transition-all hover:bg-gothic-100 dark:hover:bg-ink-700"
           >
-            <span className="text-xs text-ink-400 dark:text-parchment-500">Next</span>
-            <p className="mt-1 font-serif text-lg text-ink-900 dark:text-parchment-200 group-hover:text-ink-950 dark:group-hover:text-parchment-100">
-              {nextCard.title}
-            </p>
+            {/* Accent ribbon */}
+            <div className="h-1 bg-gradient-to-r from-gothic-400 to-gothic-300 dark:from-gothic-500 dark:to-gothic-600" />
+            <div className="p-4">
+              <span className="text-xs font-medium uppercase tracking-wider text-gothic-500 dark:text-gothic-400">Next →</span>
+              <p className="mt-2 font-serif text-lg text-ink-900 dark:text-parchment-100 group-hover:text-ink-950">
+                {nextCard.title}
+              </p>
+            </div>
           </a>
         ) : (
           <div />
