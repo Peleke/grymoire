@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { Card, CardWithContent, Realm, CardFrontmatter } from './types'
 
 const contentDirectory = path.join(process.cwd(), 'src/content')
@@ -56,13 +54,9 @@ export async function getCard(realm: Realm, id: string): Promise<CardWithContent
     const { data, content } = matter(fileContents)
 
     if (data.id === id) {
-      // Serialize MDX content
-      const mdxSource = await serialize(content)
-
       return {
         ...(data as Card),
         content,
-        mdxSource,
       }
     }
   }

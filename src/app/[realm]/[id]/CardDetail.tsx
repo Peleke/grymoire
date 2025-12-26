@@ -104,7 +104,7 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="mt-10 text-lg"
       >
-        <MDXContent source={card.mdxSource} />
+        <MDXContent content={card.content} />
       </motion.div>
 
       {/* Tags */}

@@ -92,16 +92,12 @@ export interface CardFrontmatter {
   order: number
 }
 
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
-
 /**
  * Card with parsed MDX content
  */
 export interface CardWithContent extends Card {
   /** Raw MDX content (commentary) */
   content: string
-  /** Serialized MDX for rendering */
-  mdxSource: MDXRemoteSerializeResult
 }
 
 /**
