@@ -69,23 +69,21 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
               {card.title}
             </p>
 
-            {/* Secondary info */}
-            <div className="mt-2 flex flex-wrap items-center gap-4 text-ink-600 dark:text-parchment-400">
-              {card.phonetic ? (
-                <span className="font-mono">
-                  Phonetic: /{card.phonetic}/
-                </span>
-              ) : (
-                <span className="font-mono italic text-ink-400 dark:text-parchment-500">
-                  Numeral only — no phonetic value
-                </span>
-              )}
-              {card.numericValue && (
-                <span className="font-mono">
-                  Numeric: {card.numericValue}
-                </span>
-              )}
-            </div>
+            {/* Secondary info - only show for runes/letters with phonetic or numeric values */}
+            {(card.phonetic || card.numericValue) && (
+              <div className="mt-2 flex flex-wrap items-center gap-4 text-ink-600 dark:text-parchment-400">
+                {card.phonetic && (
+                  <span className="font-mono">
+                    Phonetic: /{card.phonetic}/
+                  </span>
+                )}
+                {card.numericValue && (
+                  <span className="font-mono">
+                    Numeric: {card.numericValue}
+                  </span>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -94,6 +92,18 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
           <p className="mt-4 text-ink-600 dark:text-parchment-400 border-t border-gothic-200 dark:border-ink-700 pt-4">
             {card.secondaryText}
           </p>
+        )}
+
+        {/* Sources for saga entries */}
+        {card.sources && card.sources.length > 0 && (
+          <div className="mt-4 border-t border-gothic-200 pt-4">
+            <span className="text-sm font-medium text-ink-500 dark:text-ink-400">
+              {card.sources.length === 1 ? 'Source: ' : 'Sources: '}
+            </span>
+            <span className="text-ink-700 dark:text-ink-300 italic">
+              {card.sources.join(' · ')}
+            </span>
+          </div>
         )}
       </motion.div>
 
