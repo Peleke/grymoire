@@ -10,11 +10,11 @@ export default async function HomePage() {
       {/* Hero */}
       <header className="mb-16 text-center">
         <h1 className="font-serif text-4xl font-bold tracking-tight text-ink-950 dark:text-parchment-100 sm:text-5xl lg:text-6xl">
-          Ancient lines. Daily signal.
+          Ancient lines. Runic wisdom.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-ink-600 dark:text-parchment-400">
-          Explore the Gothic alphabet, Norse verses, and runic wisdom.
-          One card at a time.
+          Runes, staves, and the words of the ancestors.
+          Explore the magic of the Northern way.
         </p>
       </header>
 

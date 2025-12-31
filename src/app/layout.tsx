@@ -27,18 +27,18 @@ export const metadata: Metadata = {
     default: 'Your Daily Norse',
     template: '%s | Your Daily Norse',
   },
-  description: 'Ancient lines. Daily signal. Explore the Gothic alphabet, Norse verses, and runic wisdom.',
+  description: 'Ancient lines. Runic wisdom. Runes, staves, and the words of the ancestors.',
   metadataBase: new URL('https://yourdailynorse.com'),
   openGraph: {
     title: 'Your Daily Norse',
-    description: 'Ancient lines. Daily signal.',
+    description: 'Ancient lines. Runic wisdom.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Your Daily Norse',
-    description: 'Ancient lines. Daily signal.',
+    description: 'Ancient lines. Runic wisdom.',
   },
 }
 
@@ -79,7 +79,7 @@ export default function RootLayout({
           <footer className="border-t border-gothic-100 py-8 dark:border-ink-800">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <p className="text-center text-sm text-ink-500 dark:text-parchment-500">
-                Ancient lines. Daily signal.
+                Ancient lines. Runic wisdom.
               </p>
             </div>
           </footer>
