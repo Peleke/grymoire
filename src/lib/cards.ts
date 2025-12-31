@@ -15,7 +15,7 @@ export async function getCardsByRealm(realm: Realm): Promise<Card[]> {
     return []
   }
 
-  const files = fs.readdirSync(realmDir).filter(f => f.endsWith('.mdx'))
+  const files = fs.readdirSync(realmDir).filter(f => f.endsWith('.mdx') && !f.startsWith('_'))
 
   const cards = files.map(filename => {
     const filePath = path.join(realmDir, filename)
@@ -32,7 +32,7 @@ export async function getCardsByRealm(realm: Realm): Promise<Card[]> {
  * Get all cards across all realms
  */
 export async function getAllCards(): Promise<Card[]> {
-  const realms: Realm[] = ['gothic', 'voluspa', 'havamal', 'younger-futhark', 'elder-futhark']
+  const realms: Realm[] = ['gothic', 'voluspa', 'havamal', 'younger-futhark', 'elder-futhark', 'sagas']
 
   const allCards = await Promise.all(
     realms.map(realm => getCardsByRealm(realm))
@@ -46,7 +46,7 @@ export async function getAllCards(): Promise<Card[]> {
  */
 export async function getCard(realm: Realm, id: string): Promise<CardWithContent | null> {
   const realmDir = path.join(contentDirectory, realm)
-  const files = fs.readdirSync(realmDir).filter(f => f.endsWith('.mdx'))
+  const files = fs.readdirSync(realmDir).filter(f => f.endsWith('.mdx') && !f.startsWith('_'))
 
   for (const filename of files) {
     const filePath = path.join(realmDir, filename)
