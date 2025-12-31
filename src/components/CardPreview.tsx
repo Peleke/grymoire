@@ -2,16 +2,25 @@
 
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { Card, REALM_INFO } from '@/lib/types'
+import { Card, REALM_INFO, Realm } from '@/lib/types'
 
 interface CardPreviewProps {
   card: Card
 }
 
+// Realms that display runes/letters
+const GLYPH_REALMS: Realm[] = ['gothic', 'younger-futhark', 'elder-futhark', 'bind-runes', 'galdrastafir']
+
+// Realms that display verses/text
+const VERSE_REALMS: Realm[] = ['voluspa', 'havamal', 'sagas']
+
 export function CardPreview({ card }: CardPreviewProps) {
   const realmInfo = REALM_INFO[card.realm]
   const searchParams = useSearchParams()
   const realmParam = searchParams.get('realm')
+
+  const isGlyphRealm = GLYPH_REALMS.includes(card.realm)
+  const isVerseRealm = VERSE_REALMS.includes(card.realm)
 
   // Preserve realm filter in the link so back button works
   const href = realmParam
@@ -30,6 +39,11 @@ export function CardPreview({ card }: CardPreviewProps) {
 
   // Get the first grapheme (handles multi-byte Unicode like Gothic)
   const displayGlyph = Array.from(card.primaryText)[0] || card.title.charAt(0)
+
+  // For verses, show stanza number in hero instead of first letter
+  const heroContent = isVerseRealm && card.numericValue
+    ? card.numericValue.toString()
+    : displayGlyph
 
   return (
     <div className="masonry-item">
@@ -51,8 +65,10 @@ export function CardPreview({ card }: CardPreviewProps) {
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="font-serif text-6xl text-ink-950 dark:text-parchment-100 transition-transform duration-500 group-hover:scale-110">
-                    {displayGlyph}
+                  <span className={`font-serif transition-transform duration-500 group-hover:scale-110 ${
+                    isVerseRealm ? 'text-5xl text-gothic-500 dark:text-gothic-400' : 'text-6xl text-ink-950 dark:text-parchment-100'
+                  }`}>
+                    {heroContent}
                   </span>
                 </div>
               )}
@@ -82,13 +98,17 @@ export function CardPreview({ card }: CardPreviewProps) {
                 </p>
               )}
 
-              {/* Primary text preview */}
-              <p className="mt-3 font-mono text-sm text-gothic-600 dark:text-gothic-400 line-clamp-2">
+              {/* Primary text preview - different style for verses vs glyphs */}
+              <p className={`mt-3 text-sm line-clamp-2 ${
+                isVerseRealm
+                  ? 'font-serif italic text-ink-600 dark:text-parchment-400'
+                  : 'font-mono text-gothic-600 dark:text-gothic-400'
+              }`}>
                 {card.primaryText}
               </p>
 
-              {/* Secondary info for runes/letters */}
-              {(card.phonetic || card.numericValue) && (
+              {/* Secondary info - only for glyph realms */}
+              {isGlyphRealm && (card.phonetic || card.numericValue) && (
                 <div className="mt-3 flex items-center gap-3 text-xs text-ink-400 dark:text-parchment-500">
                   {card.phonetic && (
                     <span>/{card.phonetic}/</span>
