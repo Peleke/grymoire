@@ -9,6 +9,7 @@ export type Realm =
   | 'elder-futhark'
   | 'bind-runes'
   | 'galdrastafir'
+  | 'sagas'
 
 /**
  * Core Card schema - the atomic unit of content
@@ -70,6 +71,12 @@ export interface Card {
 
   /** Order within the realm (for alphabets, verse numbers) */
   order: number
+
+  /**
+   * Source texts for saga entries
+   * e.g., ['Heimskringla', 'Ynglinga saga']
+   */
+  sources?: string[]
 }
 
 /**
@@ -90,6 +97,7 @@ export interface CardFrontmatter {
   publishDate?: string
   published?: boolean
   order: number
+  sources?: string[]
 }
 
 /**
@@ -153,5 +161,11 @@ export const REALM_INFO: Record<Realm, Omit<RealmInfo, 'cardCount'>> = {
     name: 'Galdrastafir',
     description: 'Icelandic magical staves',
     color: 'ink',
+  },
+  sagas: {
+    id: 'sagas',
+    name: 'Sagas',
+    description: 'Readings from the Icelandic sagas',
+    color: 'parchment',
   },
 }
