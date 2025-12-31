@@ -11,10 +11,14 @@ export function ThemeToggle() {
     // Check localStorage and system preference
     const stored = localStorage.getItem('theme')
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const shouldBeDark = stored === 'dark' || (!stored && systemDark)
 
-    if (stored === 'dark' || (!stored && systemDark)) {
+    if (shouldBeDark) {
       setIsDark(true)
       document.documentElement.classList.add('dark')
+    } else {
+      setIsDark(false)
+      document.documentElement.classList.remove('dark')
     }
   }, [])
 

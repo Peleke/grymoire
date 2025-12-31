@@ -29,12 +29,7 @@
   }
 
   body {
-    @apply bg-parchment-50 text-ink-950;
     font-family: var(--font-sans);
-  }
-
-  .dark body {
-    @apply bg-ink-950 text-parchment-100;
   }
 
   ::selection {
