@@ -7,8 +7,10 @@ const contentDirectory = path.join(process.cwd(), 'src/content')
 
 /**
  * Get all cards from a specific realm
+ * @param realm - The realm to get cards from
+ * @param includeDrafts - Whether to include unpublished cards (default: false)
  */
-export async function getCardsByRealm(realm: Realm): Promise<Card[]> {
+export async function getCardsByRealm(realm: Realm, includeDrafts = false): Promise<Card[]> {
   const realmDir = path.join(contentDirectory, realm)
 
   if (!fs.existsSync(realmDir)) {
@@ -25,7 +27,13 @@ export async function getCardsByRealm(realm: Realm): Promise<Card[]> {
     return data as Card
   })
 
-  return cards.sort((a, b) => a.order - b.order)
+  // Filter out drafts unless includeDrafts is true
+  // Cards are published by default (published: undefined or true)
+  const filtered = includeDrafts
+    ? cards
+    : cards.filter(c => c.published !== false)
+
+  return filtered.sort((a, b) => a.order - b.order)
 }
 
 /**
