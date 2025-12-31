@@ -12,6 +12,15 @@
     --ring: 143 131 112;
   }
 
+  .dark {
+    --background: 26 26 26;
+    --foreground: 240 237 232;
+    --muted: 45 45 45;
+    --muted-foreground: 160 160 160;
+    --border: 60 60 60;
+    --ring: 143 131 112;
+  }
+
   html {
     font-feature-settings: 'kern' 1, 'liga' 1;
     -webkit-font-smoothing: antialiased;
@@ -20,12 +29,15 @@
   }
 
   body {
-    @apply bg-parchment-50 text-ink-950;
     font-family: var(--font-sans);
   }
 
   ::selection {
     @apply bg-gothic-200 text-gothic-950;
+  }
+
+  .dark ::selection {
+    @apply bg-gothic-700 text-gothic-100;
   }
 }
 
@@ -37,6 +49,13 @@
       0 8px 24px rgba(0, 0, 0, 0.02);
   }
 
+  .dark .card-shadow {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.2),
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
   .card-shadow-hover {
     box-shadow:
       0 2px 4px rgba(0, 0, 0, 0.06),
@@ -44,18 +63,25 @@
       0 16px 40px rgba(0, 0, 0, 0.04);
   }
 
+  .dark .card-shadow-hover {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      0 8px 20px rgba(0, 0, 0, 0.3),
+      0 16px 40px rgba(0, 0, 0, 0.2);
+  }
+
   .text-balance {
     text-wrap: balance;
   }
 
   .prose-norse {
-    @apply text-ink-800 leading-relaxed;
+    @apply text-ink-800 dark:text-parchment-300 leading-relaxed;
   }
 
   .prose-norse h1,
   .prose-norse h2,
   .prose-norse h3 {
-    @apply font-serif text-ink-950 tracking-tight;
+    @apply font-serif text-ink-950 dark:text-parchment-100 tracking-tight;
   }
 
   .prose-norse p {
@@ -63,11 +89,11 @@
   }
 
   .prose-norse blockquote {
-    @apply border-l-2 border-gothic-300 pl-4 italic text-ink-600;
+    @apply border-l-2 border-gothic-300 dark:border-gothic-600 pl-4 italic text-ink-600 dark:text-parchment-400;
   }
 
   .prose-norse strong {
-    @apply font-semibold text-ink-950;
+    @apply font-semibold text-ink-950 dark:text-parchment-100;
   }
 
   .realm-badge {

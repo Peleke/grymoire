@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useMemo, useCallback } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Card, Realm } from '@/lib/types'
 import { CardPreview } from './CardPreview'
@@ -11,7 +12,22 @@ interface CardGridProps {
 }
 
 export function CardGrid({ cards }: CardGridProps) {
-  const [selectedRealm, setSelectedRealm] = useState<Realm | 'all'>('all')
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  // Read realm from URL, default to 'all'
+  const selectedRealm = (searchParams.get('realm') as Realm | 'all') || 'all'
+
+  // Update URL when realm changes
+  const setSelectedRealm = useCallback((realm: Realm | 'all') => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (realm === 'all') {
+      params.delete('realm')
+    } else {
+      params.set('realm', realm)
+    }
+    router.push(`?${params.toString()}`, { scroll: false })
+  }, [router, searchParams])
 
   // Get unique realms from cards
   const realms = useMemo(() => {
