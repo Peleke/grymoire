@@ -98,6 +98,13 @@ export function CardPreview({ card }: CardPreviewProps) {
                   )}
                 </div>
               )}
+
+              {/* Sources for saga entries */}
+              {card.sources && card.sources.length > 0 && (
+                <p className="mt-3 text-xs text-ink-400 dark:text-ink-500 italic line-clamp-1">
+                  {card.sources.join(' · ')}
+                </p>
+              )}
             </div>
           </article>
         </Link>
