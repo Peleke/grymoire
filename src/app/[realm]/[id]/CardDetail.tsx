@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { CardWithContent, REALM_INFO } from '@/lib/types'
+import { MDXContent } from '@/components/MDXContent'
 
 interface CardDetailProps {
   card: CardWithContent
@@ -16,7 +17,7 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-gradient-to-br from-gothic-100 to-gothic-200 card-shadow"
+        className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-gradient-to-br from-gothic-100 to-gothic-200 dark:from-ink-800 dark:to-ink-700 card-shadow"
       >
         {card.image ? (
           <img
@@ -26,8 +27,8 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-serif text-[12rem] text-gothic-300/40 select-none">
-              {card.primaryText.charAt(0)}
+            <span className="font-serif text-[12rem] text-ink-950 dark:text-parchment-100 select-none">
+              {Array.from(card.primaryText)[0]}
             </span>
           </div>
         )}
@@ -40,11 +41,11 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="mt-10"
       >
-        <h1 className="font-serif text-4xl font-bold tracking-tight text-ink-950 sm:text-5xl text-balance">
+        <h1 className="font-serif text-4xl font-bold tracking-tight text-ink-950 dark:text-parchment-100 sm:text-5xl text-balance">
           {card.title}
         </h1>
         {card.subtitle && (
-          <p className="mt-3 text-xl text-ink-500 italic">
+          <p className="mt-3 text-xl text-ink-500 dark:text-parchment-400 italic">
             {card.subtitle}
           </p>
         )}
@@ -55,44 +56,54 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-8 rounded-xl bg-gothic-50 p-6"
+        className="mt-8 rounded-xl bg-gothic-50 dark:bg-ink-800 p-6"
       >
         {/* Primary text - the letter/rune/verse */}
         <div className="flex items-center gap-6">
-          <span className="font-serif text-6xl text-gothic-700">
+          <span className="font-serif text-6xl text-gothic-700 dark:text-gothic-300">
             {card.primaryText}
           </span>
           <div className="flex-1">
             {/* Letter name for Gothic alphabet */}
-            <p className="font-serif text-2xl text-ink-900">
+            <p className="font-serif text-2xl text-ink-900 dark:text-parchment-100">
               {card.title}
             </p>
 
-            {/* Secondary info */}
-            <div className="mt-2 flex flex-wrap items-center gap-4 text-ink-600">
-              {card.phonetic ? (
-                <span className="font-mono">
-                  Phonetic: /{card.phonetic}/
-                </span>
-              ) : (
-                <span className="font-mono italic text-ink-400">
-                  Numeral only — no phonetic value
-                </span>
-              )}
-              {card.numericValue && (
-                <span className="font-mono">
-                  Numeric: {card.numericValue}
-                </span>
-              )}
-            </div>
+            {/* Secondary info - only show for runes/letters with phonetic or numeric values */}
+            {(card.phonetic || card.numericValue) && (
+              <div className="mt-2 flex flex-wrap items-center gap-4 text-ink-600 dark:text-parchment-400">
+                {card.phonetic && (
+                  <span className="font-mono">
+                    Phonetic: /{card.phonetic}/
+                  </span>
+                )}
+                {card.numericValue && (
+                  <span className="font-mono">
+                    Numeric: {card.numericValue}
+                  </span>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
         {/* Additional secondary text if present */}
         {card.secondaryText && (
-          <p className="mt-4 text-ink-600 border-t border-gothic-200 pt-4">
+          <p className="mt-4 text-ink-600 dark:text-parchment-400 border-t border-gothic-200 dark:border-ink-700 pt-4">
             {card.secondaryText}
           </p>
+        )}
+
+        {/* Sources for saga entries */}
+        {card.sources && card.sources.length > 0 && (
+          <div className="mt-4 border-t border-gothic-200 pt-4">
+            <span className="text-sm font-medium text-ink-500 dark:text-ink-400">
+              {card.sources.length === 1 ? 'Source: ' : 'Sources: '}
+            </span>
+            <span className="text-ink-700 dark:text-ink-300 italic">
+              {card.sources.join(' · ')}
+            </span>
+          </div>
         )}
       </motion.div>
 
@@ -101,12 +112,9 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="prose-norse mt-10 text-lg"
+        className="mt-10 text-lg"
       >
-        {/* For now, render as plain text. Will add MDX rendering later */}
-        {card.content.split('\n\n').map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
+        <MDXContent content={card.content} />
       </motion.div>
 
       {/* Tags */}
@@ -120,7 +128,7 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
           {card.tags.map(tag => (
             <span
               key={tag}
-              className="rounded-full bg-gothic-100 px-3 py-1 text-sm text-gothic-700"
+              className="rounded-full bg-gothic-100 dark:bg-ink-800 px-3 py-1 text-sm text-gothic-700 dark:text-gothic-300"
             >
               #{tag}
             </span>
