@@ -28,10 +28,10 @@ export async function getCardsByRealm(realm: Realm, includeDrafts = false): Prom
   })
 
   // Filter out drafts unless includeDrafts is true
-  // Cards are published by default (published: undefined or true)
+  // Cards must have published: true to be shown (unpublished by default)
   const filtered = includeDrafts
     ? cards
-    : cards.filter(c => c.published !== false)
+    : cards.filter(c => c.published === true)
 
   return filtered.sort((a, b) => a.order - b.order)
 }

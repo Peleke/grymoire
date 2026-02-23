@@ -2,14 +2,14 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'About Your Daily Norse — ancient lines, daily signal.',
+  description: 'About Your Daily Norse — runes, sagas, and the living roots of the North.',
 }
 
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
       <header className="mb-12">
-        <h1 className="font-serif text-4xl font-bold tracking-tight text-ink-950 sm:text-5xl">
+        <h1 className="font-serif text-4xl font-bold tracking-tight text-indigo-950 dark:text-gold-400 sm:text-5xl">
           About
         </h1>
       </header>
@@ -27,7 +27,7 @@ export default function AboutPage() {
           speaks in these old forms.
         </p>
 
-        <h2 className="font-serif text-2xl font-semibold text-ink-950 mt-12 mb-6">
+        <h2 className="font-serif text-2xl font-semibold text-indigo-950 dark:text-gold-400 mt-12 mb-6">
           The Realms
         </h2>
 
@@ -59,7 +59,7 @@ export default function AboutPage() {
           </li>
         </ul>
 
-        <h2 className="font-serif text-2xl font-semibold text-ink-950 mt-12 mb-6">
+        <h2 className="font-serif text-2xl font-semibold text-indigo-950 dark:text-gold-400 mt-12 mb-6">
           The Practice
         </h2>
 
@@ -74,9 +74,9 @@ export default function AboutPage() {
           attention — to old words, old forms, old ways of encoding meaning.
         </p>
 
-        <div className="mt-16 pt-8 border-t border-gothic-100 text-ink-500 text-base">
+        <div className="mt-16 pt-8 border-t border-gold-200 dark:border-indigo-800 text-indigo-500 dark:text-gold-600 text-base">
           <p>
-            Built with care. Ancient lines. Daily signal.
+            Built with care. Read the old words. Learn the old ways.
           </p>
         </div>
       </div>

@@ -49,12 +49,12 @@ export function CardPreview({ card }: CardPreviewProps) {
     <div className="masonry-item">
       <Link href={href} className="group block">
           <article
-            className="relative overflow-hidden rounded-2xl bg-white dark:bg-ink-900 card-shadow transition-shadow duration-300 group-hover:card-shadow-hover"
+            className="relative overflow-hidden rounded-2xl bg-white dark:bg-indigo-900 card-shadow transition-shadow duration-300 group-hover:card-shadow-hover"
             style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
           >
             {/* Image placeholder - aspect ratio using padding trick for CSS columns compatibility */}
             <div
-              className="relative overflow-hidden bg-gradient-to-br from-gothic-100 to-gothic-200 dark:from-ink-800 dark:to-ink-700"
+              className="relative overflow-hidden bg-gradient-to-br from-gold-100 to-gold-200 dark:from-indigo-800 dark:to-indigo-700"
               style={{ paddingBottom: aspectRatio }}
             >
               {card.image ? (
@@ -66,7 +66,7 @@ export function CardPreview({ card }: CardPreviewProps) {
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className={`font-serif transition-transform duration-500 group-hover:scale-110 ${
-                    isVerseRealm ? 'text-5xl text-gothic-500 dark:text-gothic-400' : 'text-6xl text-ink-950 dark:text-parchment-100'
+                    isVerseRealm ? 'text-5xl text-gold-600 dark:text-gold-400' : 'text-6xl text-indigo-950 dark:text-parchment-100'
                   }`}>
                     {heroContent}
                   </span>
@@ -87,13 +87,13 @@ export function CardPreview({ card }: CardPreviewProps) {
               </div>
 
               {/* Title */}
-              <h3 className="font-serif text-xl font-semibold text-ink-950 dark:text-parchment-100 text-balance">
+              <h3 className="font-serif text-xl font-semibold text-indigo-950 dark:text-parchment-100 text-balance">
                 {card.title}
               </h3>
 
               {/* Subtitle */}
               {card.subtitle && (
-                <p className="mt-1 text-sm text-ink-500 dark:text-parchment-400 italic">
+                <p className="mt-1 text-sm text-indigo-500 dark:text-parchment-400 italic">
                   {card.subtitle}
                 </p>
               )}
@@ -101,15 +101,15 @@ export function CardPreview({ card }: CardPreviewProps) {
               {/* Primary text preview - different style for verses vs glyphs */}
               <p className={`mt-3 text-sm line-clamp-2 ${
                 isVerseRealm
-                  ? 'font-serif italic text-ink-600 dark:text-parchment-400'
-                  : 'font-mono text-gothic-600 dark:text-gothic-400'
+                  ? 'font-serif italic text-indigo-600 dark:text-parchment-400'
+                  : 'font-mono text-gold-700 dark:text-gold-400'
               }`}>
                 {card.primaryText}
               </p>
 
               {/* Secondary info - only for glyph realms */}
               {isGlyphRealm && (card.phonetic || card.numericValue) && (
-                <div className="mt-3 flex items-center gap-3 text-xs text-ink-400 dark:text-parchment-500">
+                <div className="mt-3 flex items-center gap-3 text-xs text-indigo-400 dark:text-parchment-500">
                   {card.phonetic && (
                     <span>/{card.phonetic}/</span>
                   )}
@@ -121,7 +121,7 @@ export function CardPreview({ card }: CardPreviewProps) {
 
               {/* Sources for saga entries */}
               {card.sources && card.sources.length > 0 && (
-                <p className="mt-3 text-xs text-ink-400 dark:text-ink-500 italic line-clamp-1">
+                <p className="mt-3 text-xs text-indigo-400 dark:text-indigo-500 italic line-clamp-1">
                   {card.sources.join(' · ')}
                 </p>
               )}

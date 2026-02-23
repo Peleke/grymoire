@@ -84,9 +84,9 @@ export default async function CardPage({ params, searchParams }: PageProps) {
     <article className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
       <nav className="mb-8">
-        <ol className="flex items-center gap-2 text-sm text-ink-500">
+        <ol className="flex items-center gap-2 text-sm text-indigo-500 dark:text-parchment-400">
           <li>
-            <a href={homeHref} className="hover:text-ink-700 transition-colors">
+            <a href={homeHref} className="hover:text-indigo-700 dark:hover:text-gold-400 transition-colors">
               ← Back
             </a>
           </li>
@@ -103,8 +103,8 @@ export default async function CardPage({ params, searchParams }: PageProps) {
       <CardDetail card={card} realmInfo={realmInfo} />
 
       {/* Share Bar */}
-      <div className="mt-12 border-t border-gothic-100 dark:border-ink-800 pt-8">
-        <h3 className="mb-4 text-sm font-medium text-ink-600 dark:text-parchment-400 uppercase tracking-wider">
+      <div className="mt-12 border-t border-gold-200 dark:border-indigo-800 pt-8">
+        <h3 className="mb-4 text-sm font-medium text-indigo-600 dark:text-parchment-400 uppercase tracking-wider">
           Share this card
         </h3>
         <ShareButtons
@@ -119,13 +119,13 @@ export default async function CardPage({ params, searchParams }: PageProps) {
         {prevCard ? (
           <a
             href={`/${prevCard.realm}/${prevCard.id}`}
-            className="group block overflow-hidden rounded-xl bg-gothic-50 dark:bg-ink-800 transition-all hover:bg-gothic-100 dark:hover:bg-ink-700"
+            className="group block overflow-hidden rounded-xl bg-gold-50 dark:bg-indigo-800 transition-all hover:bg-gold-100 dark:hover:bg-indigo-700"
           >
             {/* Accent ribbon */}
-            <div className="h-1 bg-gradient-to-r from-gothic-300 to-gothic-400 dark:from-gothic-600 dark:to-gothic-500" />
+            <div className="h-1 bg-gradient-to-r from-crimson-300 to-crimson-400 dark:from-crimson-600 dark:to-crimson-500" />
             <div className="p-4">
-              <span className="text-xs font-medium uppercase tracking-wider text-gothic-500 dark:text-gothic-400">← Previous</span>
-              <p className="mt-2 font-serif text-lg text-ink-900 dark:text-parchment-100 group-hover:text-ink-950">
+              <span className="text-xs font-medium uppercase tracking-wider text-gold-600 dark:text-gold-400">← Previous</span>
+              <p className="mt-2 font-serif text-lg text-indigo-900 dark:text-parchment-100 group-hover:text-indigo-950">
                 {prevCard.title}
               </p>
             </div>
@@ -136,13 +136,13 @@ export default async function CardPage({ params, searchParams }: PageProps) {
         {nextCard ? (
           <a
             href={`/${nextCard.realm}/${nextCard.id}`}
-            className="group block overflow-hidden rounded-xl bg-gothic-50 dark:bg-ink-800 text-right transition-all hover:bg-gothic-100 dark:hover:bg-ink-700"
+            className="group block overflow-hidden rounded-xl bg-gold-50 dark:bg-indigo-800 text-right transition-all hover:bg-gold-100 dark:hover:bg-indigo-700"
           >
             {/* Accent ribbon */}
-            <div className="h-1 bg-gradient-to-r from-gothic-400 to-gothic-300 dark:from-gothic-500 dark:to-gothic-600" />
+            <div className="h-1 bg-gradient-to-r from-crimson-400 to-crimson-300 dark:from-crimson-500 dark:to-crimson-600" />
             <div className="p-4">
-              <span className="text-xs font-medium uppercase tracking-wider text-gothic-500 dark:text-gothic-400">Next →</span>
-              <p className="mt-2 font-serif text-lg text-ink-900 dark:text-parchment-100 group-hover:text-ink-950">
+              <span className="text-xs font-medium uppercase tracking-wider text-gold-600 dark:text-gold-400">Next →</span>
+              <p className="mt-2 font-serif text-lg text-indigo-900 dark:text-parchment-100 group-hover:text-indigo-950">
                 {nextCard.title}
               </p>
             </div>

@@ -27,18 +27,18 @@ export const metadata: Metadata = {
     default: 'Your Daily Norse',
     template: '%s | Your Daily Norse',
   },
-  description: 'Ancient lines. Runic wisdom. Runes, staves, and the words of the ancestors.',
+  description: 'Runes, sagas, and the living roots of the North. Read the old words. Learn the old ways.',
   metadataBase: new URL('https://yourdailynorse.com'),
   openGraph: {
     title: 'Your Daily Norse',
-    description: 'Ancient lines. Runic wisdom.',
+    description: 'Runes, sagas, and the living roots of the North.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Your Daily Norse',
-    description: 'Ancient lines. Runic wisdom.',
+    description: 'Runes, sagas, and the living roots of the North.',
   },
 }
 
@@ -49,25 +49,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen antialiased bg-parchment-50 text-ink-950 dark:bg-ink-950 dark:text-parchment-100">
+      <body className="min-h-screen antialiased bg-parchment-50 text-indigo-950 dark:bg-indigo-950 dark:text-parchment-100">
         <div className="relative flex min-h-screen flex-col">
-          <header className="sticky top-0 z-50 w-full border-b border-gothic-100 bg-parchment-50/80 backdrop-blur-lg dark:border-ink-800 dark:bg-ink-950/80">
+          <header className="sticky top-0 z-50 w-full border-b border-gold-200 bg-parchment-50/80 backdrop-blur-lg dark:border-indigo-800 dark:bg-indigo-950/80">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               <a href="/" className="flex items-center gap-3 transition-opacity hover:opacity-70">
-                <span className="font-serif text-2xl font-semibold tracking-tight text-ink-950 dark:text-parchment-100">
+                <span className="font-serif text-2xl font-semibold tracking-tight text-indigo-900 dark:text-gold-400">
                   Your Daily Norse
                 </span>
               </a>
               <nav className="flex items-center gap-6">
                 <a
                   href="/"
-                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-950 dark:text-parchment-400 dark:hover:text-parchment-100"
+                  className="text-sm font-medium text-indigo-600 transition-colors hover:text-indigo-900 dark:text-gold-500 dark:hover:text-gold-300"
                 >
                   Browse
                 </a>
                 <a
                   href="/about"
-                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-950 dark:text-parchment-400 dark:hover:text-parchment-100"
+                  className="text-sm font-medium text-indigo-600 transition-colors hover:text-indigo-900 dark:text-gold-500 dark:hover:text-gold-300"
                 >
                   About
                 </a>
@@ -76,10 +76,10 @@ export default function RootLayout({
             </div>
           </header>
           <main className="flex-1">{children}</main>
-          <footer className="border-t border-gothic-100 py-8 dark:border-ink-800">
+          <footer className="border-t border-gold-200 py-8 dark:border-indigo-800">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <p className="text-center text-sm text-ink-500 dark:text-parchment-500">
-                Ancient lines. Runic wisdom.
+              <p className="text-center text-sm text-indigo-500 dark:text-gold-600">
+                Read the old words. Learn the old ways.
               </p>
             </div>
           </footer>

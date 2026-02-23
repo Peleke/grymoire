@@ -33,11 +33,11 @@
   }
 
   ::selection {
-    @apply bg-gothic-200 text-gothic-950;
+    @apply bg-gold-200 text-indigo-950;
   }
 
   .dark ::selection {
-    @apply bg-gothic-700 text-gothic-100;
+    @apply bg-indigo-700 text-gold-100;
   }
 }
 
@@ -75,13 +75,13 @@
   }
 
   .prose-norse {
-    @apply text-ink-800 dark:text-parchment-300 leading-relaxed;
+    @apply text-indigo-800 dark:text-parchment-300 leading-relaxed;
   }
 
   .prose-norse h1,
   .prose-norse h2,
   .prose-norse h3 {
-    @apply font-serif text-ink-950 dark:text-parchment-100 tracking-tight;
+    @apply font-serif text-indigo-950 dark:text-gold-400 tracking-tight;
   }
 
   .prose-norse p {
@@ -89,11 +89,11 @@
   }
 
   .prose-norse blockquote {
-    @apply border-l-2 border-gothic-300 dark:border-gothic-600 pl-4 italic text-ink-600 dark:text-parchment-400;
+    @apply border-l-2 border-crimson-300 dark:border-crimson-700 pl-4 italic text-indigo-600 dark:text-parchment-400;
   }
 
   .prose-norse strong {
-    @apply font-semibold text-ink-950 dark:text-parchment-100;
+    @apply font-semibold text-indigo-950 dark:text-gold-300;
   }
 
   .realm-badge {
@@ -101,15 +101,35 @@
   }
 
   .realm-badge-gothic {
-    @apply bg-gothic-100 text-gothic-800;
+    @apply bg-gold-100 text-gold-800 dark:bg-gold-900 dark:text-gold-200;
   }
 
   .realm-badge-voluspa {
-    @apply bg-ink-100 text-ink-800;
+    @apply bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200;
   }
 
   .realm-badge-havamal {
-    @apply bg-parchment-200 text-parchment-900;
+    @apply bg-parchment-200 text-parchment-900 dark:bg-parchment-800 dark:text-parchment-200;
+  }
+
+  .realm-badge-younger-futhark {
+    @apply bg-crimson-100 text-crimson-800 dark:bg-crimson-900 dark:text-crimson-200;
+  }
+
+  .realm-badge-elder-futhark {
+    @apply bg-gold-100 text-gold-800 dark:bg-gold-900 dark:text-gold-200;
+  }
+
+  .realm-badge-bind-runes {
+    @apply bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200;
+  }
+
+  .realm-badge-galdrastafir {
+    @apply bg-crimson-100 text-crimson-800 dark:bg-crimson-900 dark:text-crimson-200;
+  }
+
+  .realm-badge-sagas {
+    @apply bg-parchment-200 text-parchment-900 dark:bg-parchment-800 dark:text-parchment-200;
   }
 }
 

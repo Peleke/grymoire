@@ -15,7 +15,7 @@ const config: Config = {
         mono: ['var(--font-mono)', 'monospace'],
       },
       colors: {
-        // Realm-specific palettes
+        // Realm-specific palettes (legacy, still used for realm badges)
         gothic: {
           50: '#faf9f7',
           100: '#f0ede8',
@@ -54,6 +54,46 @@ const config: Config = {
           800: '#7d684f',
           900: '#665642',
           950: '#362d21',
+        },
+        // Jelling Stone palette — gold, indigo, crimson
+        gold: {
+          50: '#fefdf4',
+          100: '#fdf9e1',
+          200: '#fbf0b8',
+          300: '#f7e385',
+          400: '#f0cf4d',
+          500: '#e4b820',
+          600: '#c99a14',
+          700: '#a47614',
+          800: '#875e17',
+          900: '#6e4d19',
+          950: '#40290a',
+        },
+        indigo: {
+          50: '#eef2ff',
+          100: '#dfe6ff',
+          200: '#c6d0ff',
+          300: '#a3b0fe',
+          400: '#7e85fb',
+          500: '#5f5ef5',
+          600: '#4a3de9',
+          700: '#3d2fce',
+          800: '#3228a6',
+          900: '#2c2683',
+          950: '#1a164e',
+        },
+        crimson: {
+          50: '#fef2f2',
+          100: '#fde3e3',
+          200: '#fdcbcb',
+          300: '#faa7a7',
+          400: '#f47373',
+          500: '#ea4545',
+          600: '#d62828',
+          700: '#b41e1e',
+          800: '#951c1c',
+          900: '#7c1e1e',
+          950: '#430b0b',
         },
       },
       animation: {
