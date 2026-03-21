@@ -1,3 +1,5 @@
+@import 'leaflet/dist/leaflet.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,15 +35,29 @@
   }
 
   ::selection {
-    @apply bg-gold-200 text-indigo-950;
+    @apply bg-falun-200 text-ink-950;
   }
 
   .dark ::selection {
-    @apply bg-indigo-700 text-gold-100;
+    @apply bg-ink-700 text-falun-100;
   }
 }
 
 @layer components {
+  /* Leaflet map z-index containment — prevent tiles from overlapping site UI */
+  .leaflet-pane {
+    z-index: 1 !important;
+  }
+  .leaflet-top,
+  .leaflet-bottom {
+    z-index: 2 !important;
+  }
+  .leaflet-control {
+    z-index: 2 !important;
+  }
+  .leaflet-tooltip-pane {
+    z-index: 3 !important;
+  }
   .card-shadow {
     box-shadow:
       0 1px 2px rgba(0, 0, 0, 0.04),
@@ -74,14 +90,40 @@
     text-wrap: balance;
   }
 
-  .prose-norse {
-    @apply text-indigo-800 dark:text-parchment-300 leading-relaxed;
+  .quote-banner {
+    background: linear-gradient(135deg, #6e2019 0%, #80201c 25%, #9a2520 50%, #80201c 75%, #6e2019 100%);
+    box-shadow:
+      inset 0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 -8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
-  .prose-norse h1,
-  .prose-norse h2,
+  .quote-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.35) 100%);
+    pointer-events: none;
+  }
+
+  .prose-norse {
+    @apply text-ink-800 dark:text-parchment-300 leading-relaxed;
+  }
+
+  .prose-norse h1 {
+    @apply font-serif text-3xl font-bold text-ink-950 dark:text-falun-400 tracking-tight mt-12 mb-4;
+  }
+
+  .prose-norse h2 {
+    @apply font-serif text-2xl font-bold text-ink-950 dark:text-falun-400 tracking-tight mt-10 mb-4;
+  }
+
   .prose-norse h3 {
-    @apply font-serif text-indigo-950 dark:text-gold-400 tracking-tight;
+    @apply font-serif text-xl font-semibold text-ink-950 dark:text-falun-400 tracking-tight mt-8 mb-3;
+  }
+
+  .prose-norse h4 {
+    @apply font-serif text-lg font-semibold text-ink-900 dark:text-falun-500 tracking-tight mt-6 mb-2;
   }
 
   .prose-norse p {
@@ -89,11 +131,114 @@
   }
 
   .prose-norse blockquote {
-    @apply border-l-2 border-crimson-300 dark:border-crimson-700 pl-4 italic text-indigo-600 dark:text-parchment-400;
+    @apply border-l-2 border-falun-300 dark:border-falun-700 pl-4 italic text-ink-600 dark:text-parchment-400 my-4;
+  }
+
+  .prose-norse ul {
+    @apply list-disc pl-6 mb-4 space-y-2;
+  }
+
+  .prose-norse ol {
+    @apply list-decimal pl-6 mb-4 space-y-2;
+  }
+
+  .prose-norse li {
+    @apply text-ink-800 dark:text-parchment-300;
+  }
+
+  .prose-norse li strong {
+    @apply text-ink-950 dark:text-parchment-100;
+  }
+
+  .prose-norse a {
+    @apply text-falun-700 dark:text-falun-400 underline decoration-falun-300 dark:decoration-falun-700 underline-offset-2 transition-colors hover:text-falun-900 dark:hover:text-falun-300;
+  }
+
+  .prose-norse em {
+    @apply italic text-ink-700 dark:text-parchment-400;
+  }
+
+  .prose-norse hr {
+    @apply border-parchment-300 dark:border-ink-700 my-8;
   }
 
   .prose-norse strong {
-    @apply font-semibold text-indigo-950 dark:text-gold-300;
+    @apply font-semibold text-ink-950 dark:text-parchment-100;
+  }
+
+  .prose-norse .annotation {
+    position: relative;
+    background: rgba(154, 37, 32, 0.08);
+    border-bottom: 1.5px dotted theme('colors.falun.500');
+    cursor: pointer;
+    padding: 0 1px;
+  }
+
+  .dark .prose-norse .annotation {
+    background: rgba(154, 37, 32, 0.15);
+    border-bottom-color: theme('colors.falun.600');
+  }
+
+  .prose-norse .annotation-tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    white-space: normal;
+    width: max-content;
+    max-width: 360px;
+    z-index: 50;
+    @apply bg-parchment-50 dark:bg-ink-800 border border-parchment-300 dark:border-ink-600 text-ink-600 dark:text-parchment-400 shadow-lg;
+  }
+
+  .prose-norse .annotation-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: theme('colors.parchment.300');
+  }
+
+  .dark .prose-norse .annotation-tooltip::after {
+    border-top-color: theme('colors.ink.600');
+  }
+
+  @media (hover: hover) {
+    .prose-norse .annotation:hover .annotation-tooltip {
+      display: block !important;
+    }
+  }
+
+  .prose-norse details {
+    @apply my-6 rounded-lg border border-parchment-300 dark:border-ink-700;
+    overflow: visible;
+  }
+
+  .prose-norse details summary {
+    @apply cursor-pointer select-none px-5 py-3 font-serif text-lg font-semibold text-ink-950 dark:text-falun-400 bg-parchment-100 dark:bg-ink-800 transition-colors hover:bg-parchment-200 dark:hover:bg-ink-700;
+  }
+
+  .prose-norse details summary::marker {
+    @apply text-falun-500 dark:text-falun-600;
+  }
+
+  .prose-norse details > :not(summary) {
+    @apply px-5;
+  }
+
+  .prose-norse details > :not(summary):first-of-type {
+    @apply pt-4;
+  }
+
+  .prose-norse details > :not(summary):last-child {
+    @apply pb-5;
   }
 
   .realm-badge {
@@ -101,11 +246,11 @@
   }
 
   .realm-badge-gothic {
-    @apply bg-gold-100 text-gold-800 dark:bg-gold-900 dark:text-gold-200;
+    @apply bg-falun-100 text-falun-800 dark:bg-falun-900 dark:text-falun-200;
   }
 
   .realm-badge-voluspa {
-    @apply bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200;
+    @apply bg-ink-100 text-ink-800 dark:bg-ink-900 dark:text-ink-200;
   }
 
   .realm-badge-havamal {
@@ -113,19 +258,19 @@
   }
 
   .realm-badge-younger-futhark {
-    @apply bg-crimson-100 text-crimson-800 dark:bg-crimson-900 dark:text-crimson-200;
+    @apply bg-falun-100 text-falun-800 dark:bg-falun-900 dark:text-falun-200;
   }
 
   .realm-badge-elder-futhark {
-    @apply bg-gold-100 text-gold-800 dark:bg-gold-900 dark:text-gold-200;
+    @apply bg-falun-100 text-falun-800 dark:bg-falun-900 dark:text-falun-200;
   }
 
   .realm-badge-bind-runes {
-    @apply bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200;
+    @apply bg-ink-100 text-ink-800 dark:bg-ink-900 dark:text-ink-200;
   }
 
   .realm-badge-galdrastafir {
-    @apply bg-crimson-100 text-crimson-800 dark:bg-crimson-900 dark:text-crimson-200;
+    @apply bg-falun-100 text-falun-800 dark:bg-falun-900 dark:text-falun-200;
   }
 
   .realm-badge-sagas {

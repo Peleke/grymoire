@@ -24,21 +24,21 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Your Daily Norse',
-    template: '%s | Your Daily Norse',
+    default: 'Grymoire',
+    template: '%s | Grymoire',
   },
-  description: 'Runes, sagas, and the living roots of the North. Read the old words. Learn the old ways.',
-  metadataBase: new URL('https://yourdailynorse.com'),
+  description: 'Ðirðug: The Long Road North. An inverse pilgrimage across Europe exploring language, history, and martial tradition.',
+  metadataBase: new URL('https://grymoire.dev'),
   openGraph: {
-    title: 'Your Daily Norse',
-    description: 'Runes, sagas, and the living roots of the North.',
+    title: 'Grymoire',
+    description: 'Ðirðug: The Long Road North. An inverse pilgrimage across Europe. 22 stops. Rome to Atlanta.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Your Daily Norse',
-    description: 'Runes, sagas, and the living roots of the North.',
+    title: 'Grymoire',
+    description: 'Ðirðug: The Long Road North. An inverse pilgrimage across Europe. 22 stops. Rome to Atlanta.',
   },
 }
 
@@ -49,25 +49,42 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen antialiased bg-parchment-50 text-indigo-950 dark:bg-indigo-950 dark:text-parchment-100">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function() {
+            var stored = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (stored === 'dark' || (!stored && prefersDark)) {
+              document.documentElement.classList.add('dark');
+            }
+          })();
+        `}} />
+      </head>
+      <body className="min-h-screen antialiased bg-parchment-50 text-ink-950 dark:bg-ink-950 dark:text-parchment-100">
         <div className="relative flex min-h-screen flex-col">
-          <header className="sticky top-0 z-50 w-full border-b border-gold-200 bg-parchment-50/80 backdrop-blur-lg dark:border-indigo-800 dark:bg-indigo-950/80">
+          <header className="sticky top-0 z-50 w-full border-b border-parchment-300 bg-parchment-50/80 backdrop-blur-lg dark:border-ink-800 dark:bg-ink-950/80">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
               <a href="/" className="flex items-center gap-3 transition-opacity hover:opacity-70">
-                <span className="font-serif text-2xl font-semibold tracking-tight text-indigo-900 dark:text-gold-400">
-                  Your Daily Norse
+                <span className="font-serif text-2xl font-semibold tracking-tight text-falun-800 dark:text-falun-400">
+                  Grymoire
                 </span>
               </a>
               <nav className="flex items-center gap-6">
                 <a
                   href="/"
-                  className="text-sm font-medium text-indigo-600 transition-colors hover:text-indigo-900 dark:text-gold-500 dark:hover:text-gold-300"
+                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-900 dark:text-falun-500 dark:hover:text-falun-300"
                 >
-                  Browse
+                  Ðirðug
+                </a>
+                <a
+                  href="/readings"
+                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-900 dark:text-falun-500 dark:hover:text-falun-300"
+                >
+                  Readings
                 </a>
                 <a
                   href="/about"
-                  className="text-sm font-medium text-indigo-600 transition-colors hover:text-indigo-900 dark:text-gold-500 dark:hover:text-gold-300"
+                  className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-900 dark:text-falun-500 dark:hover:text-falun-300"
                 >
                   About
                 </a>
@@ -76,11 +93,40 @@ export default function RootLayout({
             </div>
           </header>
           <main className="flex-1">{children}</main>
-          <footer className="border-t border-gold-200 py-8 dark:border-indigo-800">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <p className="text-center text-sm text-indigo-500 dark:text-gold-600">
-                Read the old words. Learn the old ways.
-              </p>
+          <footer>
+            {/* Quote banner — Hávamál 138 */}
+            <div className="quote-banner relative overflow-hidden py-10 sm:py-14">
+              <div className="relative z-10 mx-auto max-w-3xl px-6 sm:px-8 text-center">
+                <blockquote className="font-serif text-lg leading-relaxed text-parchment-100/90 sm:text-xl sm:leading-relaxed">
+                  Deyr fé, deyja frændr,<br />
+                  deyr sjalfr it sama;<br />
+                  en orðstírr deyr aldregi<br />
+                  hveim er sér góðan getr.
+                </blockquote>
+                <cite className="mt-5 block text-sm font-medium tracking-wide text-parchment-300/60 uppercase not-italic">
+                  Hávamál &middot; 76
+                </cite>
+              </div>
+            </div>
+            {/* Footer bar */}
+            <div className="bg-ink-950 py-8">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+                  <div className="flex items-center gap-4">
+                    <a href="/" className="font-serif text-lg font-semibold text-parchment-300 transition-colors hover:text-falun-400">
+                      Grymoire
+                    </a>
+                    <span className="text-parchment-700">&middot;</span>
+                    <a href="https://peleke.me" className="text-sm text-parchment-500 transition-colors hover:text-falun-400">
+                      Peleke Sengstacke
+                    </a>
+                  </div>
+                  <nav className="flex items-center gap-6 text-sm">
+                    <a href="/" className="text-parchment-500 transition-colors hover:text-falun-400">Heim</a>
+                    <a href="/about" className="text-parchment-500 transition-colors hover:text-falun-400">About</a>
+                  </nav>
+                </div>
+              </div>
             </div>
           </footer>
         </div>
