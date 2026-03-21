@@ -54,7 +54,7 @@ export function CardPreview({ card }: CardPreviewProps) {
           >
             {/* Image placeholder - aspect ratio using padding trick for CSS columns compatibility */}
             <div
-              className="relative overflow-hidden bg-gradient-to-br from-gothic-100 to-gothic-200 dark:from-ink-800 dark:to-ink-700"
+              className="relative overflow-hidden bg-gradient-to-br from-parchment-100 to-parchment-200 dark:from-ink-800 dark:to-ink-700"
               style={{ paddingBottom: aspectRatio }}
             >
               {card.image ? (
@@ -66,7 +66,7 @@ export function CardPreview({ card }: CardPreviewProps) {
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className={`font-serif transition-transform duration-500 group-hover:scale-110 ${
-                    isVerseRealm ? 'text-5xl text-gothic-500 dark:text-gothic-400' : 'text-6xl text-ink-950 dark:text-parchment-100'
+                    isVerseRealm ? 'text-5xl text-falun-600 dark:text-falun-400' : 'text-6xl text-ink-950 dark:text-parchment-100'
                   }`}>
                     {heroContent}
                   </span>
@@ -102,7 +102,7 @@ export function CardPreview({ card }: CardPreviewProps) {
               <p className={`mt-3 text-sm line-clamp-2 ${
                 isVerseRealm
                   ? 'font-serif italic text-ink-600 dark:text-parchment-400'
-                  : 'font-mono text-gothic-600 dark:text-gothic-400'
+                  : 'font-mono text-falun-700 dark:text-falun-400'
               }`}>
                 {card.primaryText}
               </p>

@@ -17,14 +17,14 @@ export function RealmSelector({ realms, selected, onChange, cardCounts }: RealmS
         onClick={() => onChange('all')}
         className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
           selected === 'all'
-            ? 'text-ink-950'
-            : 'text-ink-500 hover:text-ink-700'
+            ? 'text-ink-950 dark:text-falun-400'
+            : 'text-ink-500 hover:text-ink-700 dark:text-parchment-400 dark:hover:text-falun-400'
         }`}
       >
         {selected === 'all' && (
           <motion.div
             layoutId="realm-indicator"
-            className="absolute inset-0 rounded-full bg-gothic-100"
+            className="absolute inset-0 rounded-full bg-falun-100 dark:bg-ink-800"
             transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
           />
         )}
@@ -41,21 +41,21 @@ export function RealmSelector({ realms, selected, onChange, cardCounts }: RealmS
             onClick={() => onChange(realm)}
             className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               selected === realm
-                ? 'text-ink-950'
-                : 'text-ink-500 hover:text-ink-700'
+                ? 'text-ink-950 dark:text-falun-400'
+                : 'text-ink-500 hover:text-ink-700 dark:text-parchment-400 dark:hover:text-falun-400'
             }`}
           >
             {selected === realm && (
               <motion.div
                 layoutId="realm-indicator"
-                className="absolute inset-0 rounded-full bg-gothic-100"
+                className="absolute inset-0 rounded-full bg-falun-100 dark:bg-ink-800"
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
               />
             )}
             <span className="relative flex items-center gap-1.5">
               {info.name}
               {count > 0 && (
-                <span className="text-xs text-ink-400">({count})</span>
+                <span className="text-xs text-ink-400 dark:text-parchment-500">({count})</span>
               )}
             </span>
           </button>

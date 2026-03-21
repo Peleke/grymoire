@@ -124,7 +124,7 @@ export const REALM_INFO: Record<Realm, Omit<RealmInfo, 'cardCount'>> = {
     id: 'gothic',
     name: 'Gothic Alphabet',
     description: 'The 27 letters of Wulfila\'s script',
-    color: 'gothic',
+    color: 'falun',
   },
   voluspa: {
     id: 'voluspa',
@@ -142,25 +142,25 @@ export const REALM_INFO: Record<Realm, Omit<RealmInfo, 'cardCount'>> = {
     id: 'younger-futhark',
     name: 'Younger Futhark',
     description: 'The 16 Viking Age runes',
-    color: 'ink',
+    color: 'falun',
   },
   'elder-futhark': {
     id: 'elder-futhark',
     name: 'Elder Futhark',
     description: 'The 24 ancient runes',
-    color: 'gothic',
+    color: 'falun',
   },
   'bind-runes': {
     id: 'bind-runes',
     name: 'Bind Runes',
     description: 'Combined runic symbols',
-    color: 'parchment',
+    color: 'ink',
   },
   galdrastafir: {
     id: 'galdrastafir',
     name: 'Galdrastafir',
     description: 'Icelandic magical staves',
-    color: 'ink',
+    color: 'falun',
   },
   sagas: {
     id: 'sagas',

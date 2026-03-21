@@ -39,7 +39,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="rounded-lg p-2 text-ink-600 transition-colors hover:bg-gothic-100 hover:text-ink-950"
+        className="rounded-lg p-2 text-ink-600 transition-colors hover:bg-falun-100 hover:text-ink-950"
         aria-label="Toggle theme"
       >
         <span className="h-5 w-5 block" />
@@ -50,7 +50,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="rounded-lg p-2 text-ink-600 transition-colors hover:bg-gothic-100 hover:text-ink-950 dark:text-parchment-400 dark:hover:bg-ink-800 dark:hover:text-parchment-100"
+      className="rounded-lg p-2 text-ink-600 transition-colors hover:bg-falun-100 hover:text-ink-950 dark:text-falun-500 dark:hover:bg-ink-800 dark:hover:text-falun-300"
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {isDark ? (

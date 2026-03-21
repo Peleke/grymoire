@@ -75,7 +75,7 @@ export function CardGrid({ cards }: CardGridProps) {
           animate={{ opacity: 1 }}
           className="py-20 text-center"
         >
-          <p className="text-ink-500">No cards yet in this realm.</p>
+          <p className="text-ink-500 dark:text-parchment-400">No cards yet in this realm.</p>
         </motion.div>
       )}
     </div>

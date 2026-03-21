@@ -27,7 +27,7 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-gradient-to-br from-gothic-100 to-gothic-200 dark:from-ink-800 dark:to-ink-700 card-shadow"
+          className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-gradient-to-br from-parchment-100 to-parchment-200 dark:from-ink-800 dark:to-ink-700 card-shadow"
         >
           {card.image ? (
             <img
@@ -58,7 +58,7 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
           </h1>
           {/* Stanza number badge for verses */}
           {isVerseRealm && card.numericValue && (
-            <span className="inline-flex items-center justify-center rounded-full bg-gothic-200 dark:bg-ink-700 px-3 py-1 text-sm font-medium text-gothic-700 dark:text-gothic-300">
+            <span className="inline-flex items-center justify-center rounded-full bg-falun-200 dark:bg-ink-700 px-3 py-1 text-sm font-medium text-falun-800 dark:text-falun-300">
               #{card.numericValue}
             </span>
           )}
@@ -75,12 +75,12 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-8 rounded-xl bg-gothic-50 dark:bg-ink-800 p-6"
+        className="mt-8 rounded-xl bg-parchment-100 dark:bg-ink-800 p-6"
       >
         {isGlyphRealm ? (
           /* Glyph layout: large symbol + title + phonetic/numeric */
           <div className="flex items-center gap-6">
-            <span className="font-serif text-6xl text-gothic-700 dark:text-gothic-300">
+            <span className="font-serif text-6xl text-falun-700 dark:text-falun-300">
               {card.primaryText}
             </span>
             <div className="flex-1">
@@ -108,7 +108,7 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
           <div className="space-y-6">
             {/* Old Norse / Primary Text */}
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-gothic-500 dark:text-gothic-400 mb-2">
+              <p className="text-xs font-medium uppercase tracking-wider text-falun-600 dark:text-falun-400 mb-2">
                 Old Norse
               </p>
               <p className="font-serif text-xl leading-relaxed text-ink-900 dark:text-parchment-100 whitespace-pre-line">
@@ -118,8 +118,8 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
 
             {/* Translation / Secondary Text */}
             {card.secondaryText && (
-              <div className="border-t border-gothic-200 dark:border-ink-700 pt-6">
-                <p className="text-xs font-medium uppercase tracking-wider text-gothic-500 dark:text-gothic-400 mb-2">
+              <div className="border-t border-parchment-300 dark:border-ink-700 pt-6">
+                <p className="text-xs font-medium uppercase tracking-wider text-falun-600 dark:text-falun-400 mb-2">
                   Translation
                 </p>
                 <p className="font-serif text-lg leading-relaxed text-ink-700 dark:text-parchment-300 italic whitespace-pre-line">
@@ -130,8 +130,8 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
 
             {/* Sources for saga entries */}
             {card.sources && card.sources.length > 0 && (
-              <div className="border-t border-gothic-200 dark:border-ink-700 pt-4">
-                <p className="text-xs font-medium uppercase tracking-wider text-gothic-500 dark:text-gothic-400 mb-1">
+              <div className="border-t border-parchment-300 dark:border-ink-700 pt-4">
+                <p className="text-xs font-medium uppercase tracking-wider text-falun-600 dark:text-falun-400 mb-1">
                   {card.sources.length === 1 ? 'Source' : 'Sources'}
                 </p>
                 <p className="text-ink-700 dark:text-parchment-300">
@@ -144,7 +144,7 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
 
         {/* Secondary text for glyph realms */}
         {isGlyphRealm && card.secondaryText && (
-          <p className="mt-4 text-ink-600 dark:text-parchment-400 border-t border-gothic-200 dark:border-ink-700 pt-4">
+          <p className="mt-4 text-ink-600 dark:text-parchment-400 border-t border-parchment-300 dark:border-ink-700 pt-4">
             {card.secondaryText}
           </p>
         )}
@@ -171,7 +171,7 @@ export function CardDetail({ card, realmInfo }: CardDetailProps) {
           {card.tags.map(tag => (
             <span
               key={tag}
-              className="rounded-full bg-gothic-100 dark:bg-ink-800 px-3 py-1 text-sm text-gothic-700 dark:text-gothic-300"
+              className="rounded-full bg-falun-100 dark:bg-ink-800 px-3 py-1 text-sm text-falun-800 dark:text-falun-300"
             >
               #{tag}
             </span>
