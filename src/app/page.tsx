@@ -34,13 +34,13 @@ export default function HomePage() {
           The Long Road North
         </p>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-700 dark:text-parchment-300">
-          An inverse pilgrimage across Europe. Language, history, martial tradition.
-          Starting in Rome, following the reverse path of Guðríður Þorbjarnardóttir, the
-          farthest-traveled woman of the medieval world. Each stop generates essays, field recordings,
-          and research tied to its local significance.
+          An inverse pilgrimage across Europe, tracing the reverse path of Guðríður
+          Þorbjarnardóttir, the farthest-traveled woman of the medieval world. Language,
+          history, martial tradition. Each stop generates essays, field recordings, and
+          research tied to its local significance.
         </p>
         <p className="mt-4 max-w-2xl text-sm text-ink-500 dark:text-parchment-500">
-          22 stops. Rome to Atlanta. Germanic migrations, traced in reverse.
+          22 stops. Rome to Atlanta.
         </p>
       </section>
 
