@@ -74,7 +74,7 @@ export default function HomePage() {
           The Route
         </h2>
         <p className="text-sm text-ink-500 dark:text-parchment-500 mb-8">
-          Expand each stop to see its narrative context and planned content.
+          When I was a child, I walked a route in my mind that I dreamt I'd one day follow on foot. It might be a bike...But our final map is below.
         </p>
         <RouteList />
       </section>
