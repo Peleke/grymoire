@@ -104,6 +104,10 @@ function getMarkerStyle(node: RouteNode) {
   if (node.liminal) {
     return { radius: 4, fillColor: '#9a7f5c', fillOpacity: 0.4, color: '#9a7f5c', weight: 1, opacity: 0.6 }
   }
+  // Campaign nodes get a larger, double-ring marker
+  if (node.campaignPage) {
+    return { radius: 8, fillColor: '#fdf5f4', fillOpacity: 0.9, color: '#9a2520', weight: 3, opacity: 1 }
+  }
 
   const hasPublished = node.content.some((c) => c.status === 'published')
   if (hasPublished) {
