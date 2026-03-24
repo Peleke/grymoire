@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { MapContainer, TileLayer, Polyline, CircleMarker, Tooltip, useMap } from 'react-leaflet'
+import L from 'leaflet'
 import type { LatLngTuple } from 'leaflet'
 import { ROUTE_NODES, type RouteNode } from '@/lib/dirdug'
 
@@ -116,15 +117,99 @@ function getMarkerStyle(node: RouteNode) {
 }
 
 // ============================================================================
+// Animated route draw — the line traces itself from Rome to Atlanta
+// ============================================================================
+
+function AnimatedRouteDraw({ playing, onNodeReached }: { playing: boolean; onNodeReached?: (node: RouteNode) => void }) {
+  const map = useMap()
+
+  useEffect(() => {
+    if (!playing) return
+
+    let cancelled = false
+    let timer: ReturnType<typeof setTimeout> | null = null
+    const layers: L.Layer[] = []
+
+    const coords = ROUTE_NODES.map((n) => n.coordinates as LatLngTuple)
+
+    // Interpolate
+    const frames: { point: LatLngTuple; nodeIndex: number | null }[] = []
+    const pps = Math.floor(600 / (coords.length - 1))
+    for (let i = 0; i < coords.length - 1; i++) {
+      const [y1, x1] = coords[i]
+      const [y2, x2] = coords[i + 1]
+      for (let j = 0; j < pps; j++) {
+        const t = j / pps
+        frames.push({ point: [y1 + (y2 - y1) * t, x1 + (x2 - x1) * t], nodeIndex: j === 0 ? i : null })
+      }
+    }
+    frames.push({ point: coords[coords.length - 1], nodeIndex: coords.length - 1 })
+
+    const solid = L.polyline([], { color: '#9a2520', weight: 2.5, opacity: 0.8 })
+    const dashed = L.polyline([], { color: '#9a7f5c', weight: 2, opacity: 0.5, dashArray: '8 6' })
+    solid.addTo(map)
+    dashed.addTo(map)
+    layers.push(solid, dashed)
+
+    let i = 0
+    function step() {
+      if (cancelled || i >= frames.length) return
+      const f = frames[i]
+      const n = f.nodeIndex !== null ? ROUTE_NODES[f.nodeIndex] : null
+
+      if (n?.liminal || n?.arc === 'atlantic') {
+        dashed.addLatLng(f.point)
+      } else {
+        solid.addLatLng(f.point)
+      }
+
+      if (f.nodeIndex !== null && n && !n.liminal) {
+        const m = L.circleMarker(f.point, { radius: 6, fillColor: '#fdf5f4', fillOpacity: 0.9, color: '#9a2520', weight: 2, opacity: 0.8 })
+        m.addTo(map)
+        layers.push(m)
+
+        const lb = L.marker(f.point, {
+          icon: L.divIcon({
+            className: 'animate-fade-in',
+            html: `<div style="font-family:var(--font-serif);font-size:12px;font-weight:600;color:#9a2520;white-space:nowrap;text-shadow:0 0 4px rgba(253,252,250,.9),0 0 8px rgba(253,252,250,.7);transform:translateY(-20px);pointer-events:none">${n.name}</div>`,
+            iconSize: [0, 0],
+            iconAnchor: [0, 0],
+          }),
+        })
+        lb.addTo(map)
+        layers.push(lb)
+        if (onNodeReached) onNodeReached(n)
+      }
+
+      i++
+      timer = setTimeout(step, 20)
+    }
+
+    timer = setTimeout(step, 500)
+
+    return () => {
+      cancelled = true
+      if (timer) clearTimeout(timer)
+      layers.forEach((l) => { try { map.removeLayer(l) } catch {} })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing])
+
+  return null
+}
+
+// ============================================================================
 // ExpeditionMap
 // ============================================================================
 
 interface ExpeditionMapProps {
   onNodeSelect: (node: RouteNode) => void
   selectedNodeId?: string | null
+  animating?: boolean
+  onNodeReached?: (node: RouteNode) => void
 }
 
-export default function ExpeditionMap({ onNodeSelect, selectedNodeId }: ExpeditionMapProps) {
+export default function ExpeditionMap({ onNodeSelect, selectedNodeId, animating = false, onNodeReached }: ExpeditionMapProps) {
   return (
     <MapContainer
       center={[50, 5]}
@@ -136,28 +221,34 @@ export default function ExpeditionMap({ onNodeSelect, selectedNodeId }: Expediti
     >
       <ThemeAwareTiles />
       <FitBounds nodes={ROUTE_NODES} />
-      <RouteLines />
 
-      {ROUTE_NODES.map((node) => {
-        const style = getMarkerStyle(node)
-        const isSelected = selectedNodeId === node.id
+      {animating ? (
+        <AnimatedRouteDraw playing={animating} onNodeReached={onNodeReached} />
+      ) : (
+        <>
+          <RouteLines />
+          {ROUTE_NODES.map((node) => {
+            const style = getMarkerStyle(node)
+            const isSelected = selectedNodeId === node.id
 
-        return (
-          <CircleMarker
-            key={node.id}
-            center={node.coordinates as LatLngTuple}
-            {...style}
-            radius={isSelected ? style.radius + 2 : style.radius}
-            eventHandlers={{
-              click: () => onNodeSelect(node),
-            }}
-          >
-            <Tooltip direction="top" offset={[0, -10]} opacity={0.95}>
-              <span className="font-serif text-sm font-semibold">{node.name}</span>
-            </Tooltip>
-          </CircleMarker>
-        )
-      })}
+            return (
+              <CircleMarker
+                key={node.id}
+                center={node.coordinates as LatLngTuple}
+                {...style}
+                radius={isSelected ? style.radius + 2 : style.radius}
+                eventHandlers={{
+                  click: () => onNodeSelect(node),
+                }}
+              >
+                <Tooltip direction="top" offset={[0, -10]} opacity={0.95}>
+                  <span className="font-serif text-sm font-semibold">{node.name}</span>
+                </Tooltip>
+              </CircleMarker>
+            )
+          })}
+        </>
+      )}
     </MapContainer>
   )
 }
