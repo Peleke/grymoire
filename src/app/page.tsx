@@ -20,6 +20,7 @@ const ExpeditionMap = dynamic(() => import('@/components/dirdug/ExpeditionMap'),
 
 export default function HomePage() {
   const [selectedNode, setSelectedNode] = useState<RouteNode | null>(null)
+  const [animating, setAnimating] = useState(false)
 
   return (
     <div className="relative">
@@ -42,6 +43,16 @@ export default function HomePage() {
         <p className="mt-4 max-w-2xl text-sm text-ink-500 dark:text-parchment-500">
           22 stops. Rome to Atlanta.
         </p>
+        <button
+          onClick={() => setAnimating(true)}
+          disabled={animating}
+          className="mt-6 inline-flex items-center gap-2 rounded-lg border border-falun-700/30 dark:border-falun-500/30 bg-parchment-100 dark:bg-ink-800 px-4 py-2 text-sm font-medium text-falun-800 dark:text-falun-400 transition-colors hover:bg-falun-100 dark:hover:bg-ink-700 disabled:opacity-40 disabled:cursor-default"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+            <polygon points="3,1 12,7 3,13" />
+          </svg>
+          {animating ? 'Tracing the route...' : 'Trace the route'}
+        </button>
       </section>
 
       {/* ================================================================ */}
@@ -53,6 +64,7 @@ export default function HomePage() {
             <ExpeditionMap
               onNodeSelect={setSelectedNode}
               selectedNodeId={selectedNode?.id}
+              animating={animating}
             />
           </div>
         </div>
