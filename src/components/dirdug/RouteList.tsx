@@ -109,6 +109,15 @@ function NodeRow({ node, isLast }: { node: RouteNode; isLast: boolean }) {
           <p className="mt-0.5 text-sm text-ink-500 dark:text-parchment-500 line-clamp-1">
             {node.thematicAnchor}
           </p>
+          {node.campaignPage && (
+            <a
+              href={node.campaignPage}
+              onClick={(e) => e.stopPropagation()}
+              className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-falun-700 dark:text-falun-400 hover:text-falun-900 dark:hover:text-falun-300 transition-colors"
+            >
+              Explore this stop →
+            </a>
+          )}
         </div>
 
         {/* Expand chevron */}

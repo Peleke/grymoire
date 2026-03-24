@@ -144,6 +144,19 @@ export default function NodePanel({ node, onClose }: NodePanelProps) {
                 {node.thematicAnchor}
               </p>
 
+              {/* Campaign page link */}
+              {node.campaignPage && (
+                <a
+                  href={node.campaignPage}
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-lg border border-falun-700/30 dark:border-falun-500/30 bg-parchment-100 dark:bg-ink-800 px-3 py-1.5 text-xs font-medium text-falun-800 dark:text-falun-400 transition-colors hover:bg-falun-100 dark:hover:bg-ink-700"
+                >
+                  Explore this stop
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2.5 6h7M6.5 3l3 3-3 3" />
+                  </svg>
+                </a>
+              )}
+
               {/* Faces (for dual-identity nodes like Iceland) */}
               {node.faces && node.faces.length > 0 && (
                 <div className="mt-4 space-y-3">

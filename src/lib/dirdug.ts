@@ -64,6 +64,8 @@ export interface RouteNode {
   /** Thematic tags for cross-referencing */
   historicalAnchors: string[]
   content: ContentLink[]
+  /** Full campaign page path (nodes that have earned their own page) */
+  campaignPage?: string
   /** Arc grouping for visual segmentation */
   arc: 'italy' | 'alpine' | 'rhineland' | 'hanseatic' | 'denmark' | 'sweden' | 'norway' | 'atlantic' | 'america'
 }
@@ -80,6 +82,7 @@ export const ROUTE_NODES: RouteNode[] = [
     name: 'Rome',
     coordinates: [41.9028, 12.4964],
     status: 'planned',
+    campaignPage: '/nodes/rome',
     thematicAnchor: 'A Song, an Heir, and the Ruler of All',
     narrative:
       'A Gothic king is buried in a riverbed and never found. Eight centuries before him, a Gallic warlord sacks the same city on the same terms.\n\nBetween them, Rome built walls against exactly the people it kept hiring to defend them...and then executed its best general for having the wrong blood.\n\nWe begin where Guðríður ends her pilgrimage, in the city that knew what "Roman" meant, but never quite decides who counts as such...',
