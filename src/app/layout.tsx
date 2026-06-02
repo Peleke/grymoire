@@ -71,7 +71,7 @@ export default function RootLayout({
               </a>
               <nav className="flex items-center gap-6">
                 <a
-                  href="/"
+                  href="/dirdug"
                   className="text-sm font-medium text-ink-600 transition-colors hover:text-ink-900 dark:text-falun-500 dark:hover:text-falun-300"
                 >
                   Ðirðug
