@@ -10,14 +10,11 @@ export default async function ReadingsPage() {
       {/* Hero */}
       <header className="mb-16">
         <p className="text-xs font-medium uppercase tracking-widest text-falun-600 dark:text-falun-500 mb-3">
-          Letters &middot; Echoes &middot; Waves
+          Letters &amp; Echoes
         </p>
-        <h1 className="font-serif text-4xl font-bold tracking-tight text-ink-950 dark:text-parchment-100 sm:text-5xl">
-          Musings and memories across the traditions I&apos;ve come to know.
+        <h1 className="font-serif text-2xl font-bold tracking-tight text-ink-950 dark:text-parchment-100 sm:text-3xl">
+          Musings, memories, and inklings
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-ink-500 dark:text-parchment-400">
-          Readings in Old Norse, Old English, and the manuscript traditions that connect them. Occasionally Japanese.
-        </p>
       </header>
 
       {/* Card Grid */}
